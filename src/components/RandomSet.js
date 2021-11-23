@@ -1,6 +1,14 @@
-const RandomSet = ({ blocks, setBlocks, moveAbles, setMoveAbles }) => {
+const RandomSet = ({ blocks, setBlocks, moveAbles, setMoveAbles, setSetterMode }) => {
 
     const fire = () => {
+        // reset the current state to keep track of "d"
+        setBlocks([
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8]
+        ])
+        setMoveAbles([1, 3])
+
         let changeCount = Math.floor(Math.random() * 5) + 3 //todo : use it as d
         let componentBlocks = JSON.parse(JSON.stringify(blocks))
         let componentMoveAbles = JSON.parse(JSON.stringify(moveAbles))
@@ -18,6 +26,7 @@ const RandomSet = ({ blocks, setBlocks, moveAbles, setMoveAbles }) => {
         }
         setBlocks(componentBlocks)
         setMoveAbles(componentMoveAbles)
+        setSetterMode(1)
     }
 
     const componentMove = (block, componentBlocks, componentMoveAbles) => {
@@ -112,10 +121,10 @@ const RandomSet = ({ blocks, setBlocks, moveAbles, setMoveAbles }) => {
     }
 
     return(
-        <div
-            onClick={fire}
-            className={"cursor-pointer m-3 px-8 py-2 text-2xl bg-blue-500 rounded-lg shadow-lg hover:bg-blue-800 hover:shadow-xl transition text-white w-max"}>
-            Random set
+        <div>
+            {
+                fire()
+            }
         </div>
     )
 }

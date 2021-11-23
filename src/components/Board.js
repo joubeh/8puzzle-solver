@@ -89,7 +89,7 @@ const Board = ({ blocks, setBlocks, moveAbles, setMoveAbles }) => {
     }
 
     return(
-        <div className={"m-3 p-2 w-max bg-yellow-400 grid grid-cols-3 gap-2"}>
+        <div className={"m-3 w-max bg-gray-200 p-5 grid grid-cols-3 gap-2 rounded-lg border-2 border-gray-400"}>
             {
                 blocks[0].map(block => {
                     if (moveAbles.includes(block)){

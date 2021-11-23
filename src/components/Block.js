@@ -5,7 +5,7 @@ const Block = ({number}) => {
         );
     } else {
         return(
-            <div className={"transition shadow-lg rounded p-5 bg-indigo-500 hover:bg-indigo-800 hover:shadow-xl text-center text-white"}>
+            <div className={"transition shadow-lg rounded-lg p-5 bg-blue-500 hover:bg-blue-800 hover:shadow-xl text-center text-white"}>
                 {number}
             </div>
         );

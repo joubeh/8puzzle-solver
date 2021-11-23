@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const QuickSet = ({ setBlocks, setMoveAbles }) => {
+const QuickSet = ({ setBlocks, setMoveAbles, setSetterMode }) => {
     const [isChoosing, setIsChoosing] = useState(false)
     const [selectedBlock, setSelectedBlock] = useState(null)
     const [tmpBlocks, setTmpBlocks] = useState([
@@ -25,6 +25,16 @@ const QuickSet = ({ setBlocks, setMoveAbles }) => {
     }
 
     const fire = () => {
+        for (let i=0; i<3; i++){
+            for (let j=0; j<3; j++){
+                if (tmpBlocks[i][j] === -1){
+                    alert("Please set all blocks!")
+                    reset()
+                    return
+                }
+            }
+        }
+
         setBlocks(tmpBlocks)
         let emptyPosition;
         let emptyIdx;
@@ -94,6 +104,7 @@ const QuickSet = ({ setBlocks, setMoveAbles }) => {
         }
 
         reset()
+        setSetterMode(1)
     }
 
     const reset = () => {
@@ -110,128 +121,131 @@ const QuickSet = ({ setBlocks, setMoveAbles }) => {
     }
 
     return(
-        <div className={"m-3 p-5 w-max bg-yellow-400"}>
-            <div className={"text-center mb-3 text-xl"}>
-                Quick set
+        <div>
+            <div className={"w-max mx-auto"}>
+
+                {
+                    availableNumbers.length === 0 ?
+                        <div
+                            onClick={fire}
+                            className={"text-center mb-3 text-xl bg-blue-500 text-white py-2 rounded-lg shadow-lg hover:bg-blue-800 hover:shadow-xl transition cursor-pointer"}>
+                            Set
+                        </div>
+                        :
+                        null
+                }
+
+                {
+                    availableNumbers.length === 9 ?
+                        null
+                        :
+                        <div
+                            onClick={reset}
+                            className={"text-center mb-3 text-xl bg-red-500 text-white py-2 rounded-lg shadow-lg hover:bg-red-800 hover:shadow-xl transition cursor-pointer"}>
+                            Reset
+                        </div>
+                }
+
+                <div className={"m-3 w-max bg-gray-200 p-5 grid grid-cols-3 gap-2 rounded-lg border-2 border-gray-400"}>
+                    {
+                        tmpBlocks[0].map((block, idx) => {
+                            return(
+                                <div
+                                    key={`${0}-${idx}`}
+                                    onClick={e => {
+                                        setSelectedBlock([0, idx])
+                                        setIsChoosing(true)
+                                    }}
+                                    className={"cursor-pointer transition shadow-lg rounded-lg p-5 bg-blue-500 hover:bg-blue-800 hover:shadow-xl text-center text-white"}>
+                                    {
+                                        block === -1 ?
+                                            <span>X</span>
+                                            :
+                                            block
+                                    }
+                                </div>
+                            )
+                        })
+                    }
+                    {
+                        tmpBlocks[1].map((block, idx) => {
+                            return(
+                                <div
+                                    key={`${1}-${idx}`}
+                                    onClick={e => {
+                                        setSelectedBlock([1, idx])
+                                        setIsChoosing(true)
+                                    }}
+                                    className={"cursor-pointer transition shadow-lg rounded-lg p-5 bg-blue-500 hover:bg-blue-800 hover:shadow-xl text-center text-white"}>
+                                    {
+                                        block === -1 ?
+                                            <span>X</span>
+                                            :
+                                            block
+                                    }
+                                </div>
+                            )
+                        })
+                    }
+                    {
+                        tmpBlocks[2].map((block, idx) => {
+                            return(
+                                <div
+                                    key={`${2}-${idx}`}
+                                    onClick={e => {
+                                        setSelectedBlock([2, idx])
+                                        setIsChoosing(true)
+                                    }}
+                                    className={"cursor-pointer transition shadow-lg rounded-lg p-5 bg-blue-500 hover:bg-blue-800 hover:shadow-xl text-center text-white"}>
+                                    {
+                                        block === -1 ?
+                                            <span>X</span>
+                                            :
+                                            block
+                                    }
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
+
+                {
+                    isChoosing ?
+                        <div className={"grid grid-cols-3 gap-2"}>
+                            {
+                                [0, 1, 2, 3, 4, 5, 6, 7, 8].map(number => {
+                                    if (availableNumbers.includes(number)) {
+                                        return (
+                                            <div
+                                                key={number}
+                                                onClick={e => {
+                                                    fixBlock(number)
+                                                }}
+                                                className={"transition cursor-pointer text-center p-2 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-800 hover:shadow-xl"}>
+                                                {number}
+                                            </div>
+                                        );
+                                    } else {
+                                        return(
+                                            <div
+                                                key={number}
+                                                className={"transition cursor-not-allowed text-center p-2 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-800 hover:shadow-xl"}>
+                                                {number}
+                                            </div>
+                                        );
+                                    }
+                                })
+                            }
+                        </div>
+                        :
+                        null
+                }
             </div>
-
-            {
-                availableNumbers.length === 0 ?
-                    <div
-                        onClick={fire}
-                        className={"text-center mb-3 text-xl bg-green-500 text-white py-2 rounded-lg shadow-lg hover:bg-green-800 hover:shadow-xl transition cursor-pointer"}>
-                        Set
-                    </div>
-                    :
-                    null
-            }
-
-            {
-                availableNumbers.length === 9 ?
-                    null
-                    :
-                    <div
-                        onClick={reset}
-                        className={"text-center mb-3 text-xl bg-red-500 text-white py-2 rounded-lg shadow-lg hover:bg-red-800 hover:shadow-xl transition cursor-pointer"}>
-                        Reset
-                    </div>
-            }
-
-            <div className={"grid grid-cols-3 gap-2 mb-3"}>
-                {
-                    tmpBlocks[0].map((block, idx) => {
-                        return(
-                            <div
-                                key={`${0}-${idx}`}
-                                onClick={e => {
-                                    setSelectedBlock([0, idx])
-                                    setIsChoosing(true)
-                                }}
-                                className={"transition cursor-pointer text-center p-5 bg-indigo-500 text-white rounded-lg shadow-lg hover:bg-indigo-800 hover:shadow-xl"}>
-                                {
-                                    block === -1 ?
-                                        <span>X</span>
-                                        :
-                                        block
-                                }
-                            </div>
-                        )
-                    })
-                }
-                {
-                    tmpBlocks[1].map((block, idx) => {
-                        return(
-                            <div
-                                key={`${1}-${idx}`}
-                                onClick={e => {
-                                    setSelectedBlock([1, idx])
-                                    setIsChoosing(true)
-                                }}
-                                className={"transition cursor-pointer text-center p-5 bg-indigo-500 text-white rounded-lg shadow-lg hover:bg-indigo-800 hover:shadow-xl"}>
-                                {
-                                    block === -1 ?
-                                        <span>X</span>
-                                        :
-                                        block
-                                }
-                            </div>
-                        )
-                    })
-                }
-                {
-                    tmpBlocks[2].map((block, idx) => {
-                        return(
-                            <div
-                                key={`${2}-${idx}`}
-                                onClick={e => {
-                                    setSelectedBlock([2, idx])
-                                    setIsChoosing(true)
-                                }}
-                                className={"transition cursor-pointer text-center p-5 bg-indigo-500 text-white rounded-lg shadow-lg hover:bg-indigo-800 hover:shadow-xl"}>
-                                {
-                                    block === -1 ?
-                                        <span>X</span>
-                                        :
-                                        block
-                                }
-                            </div>
-                        )
-                    })
-                }
+            <div className={"text-center text-gray-700 mt-2"}>
+                <div>Careful when using "Quick set", Half of the starting states are not going to be solved!</div>
+                <div>We recommended to use either "Manual set" or "Random set" to make sure the puzzle can be solved.</div>
             </div>
-
-
-            {
-                isChoosing ?
-                    <div className={"grid grid-cols-3 gap-2"}>
-                        {
-                            [0, 1, 2, 3, 4, 5, 6, 7, 8].map(number => {
-                                if (availableNumbers.includes(number)) {
-                                    return (
-                                        <div
-                                            key={number}
-                                            onClick={e => {
-                                                fixBlock(number)
-                                            }}
-                                            className={"transition cursor-pointer text-center p-5 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-800 hover:shadow-xl"}>
-                                            {number}
-                                        </div>
-                                    );
-                                } else {
-                                    return(
-                                        <div
-                                            key={number}
-                                            className={"transition cursor-not-allowed text-center p-5 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-800 hover:shadow-xl"}>
-                                            {number}
-                                        </div>
-                                    );
-                                }
-                            })
-                        }
-                    </div>
-                    :
-                    null
-            }
         </div>
     );
 }
