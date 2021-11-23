@@ -2,6 +2,8 @@ import Board from "./components/Board";
 import {useEffect, useState} from "react";
 import QuickSet from "./components/QuickSet";
 import RandomSet from "./components/RandomSet";
+import LoadingScreen from "./components/LoadingScreen";
+
 
 function App() {
     const [blocks, setBlocks] = useState([
@@ -81,13 +83,18 @@ function App() {
             }
             {
                 isSolving ?
-                    null
+                    <div>
+                        <LoadingScreen/>
+                    </div>
                     :
                     (
                         solved ?
                             null
                             :
                             <div
+                                onClick={e => {
+                                    setIsSolving(true)
+                                }}
                                 className={"grid grid-cols-3 text-2xl w-max py-3 px-10 mx-auto cursor-pointer rounded-lg transition text-center text-white bg-blue-500 hover:bg-blue-800 shadow-lg hover: shadow-2xl"}>
                                 <div></div>
                                 <div>Solve</div>
