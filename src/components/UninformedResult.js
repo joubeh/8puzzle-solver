@@ -28,7 +28,7 @@ const UninformedResult = ({result}) => {
                                                 return(
                                                     <div
                                                         key={`${0}-${idx}`}
-                                                        className={"cursor-pointer transition shadow-lg rounded-lg p-5 bg-blue-500 hover:bg-blue-800 hover:shadow-xl text-center text-white"}>
+                                                        className={"shadow-lg rounded-lg p-5 bg-blue-500 text-center text-white"}>
                                                         {block}
                                                     </div>
                                                 )
@@ -45,7 +45,7 @@ const UninformedResult = ({result}) => {
                                                 return(
                                                     <div
                                                         key={`${1}-${idx}`}
-                                                        className={"cursor-pointer transition shadow-lg rounded-lg p-5 bg-blue-500 hover:bg-blue-800 hover:shadow-xl text-center text-white"}>
+                                                        className={"shadow-lg rounded-lg p-5 bg-blue-500 text-center text-white"}>
                                                         {block}
                                                     </div>
                                                 )
@@ -62,7 +62,7 @@ const UninformedResult = ({result}) => {
                                                 return(
                                                     <div
                                                         key={`${2}-${idx}`}
-                                                        className={"cursor-pointer transition shadow-lg rounded-lg p-5 bg-blue-500 hover:bg-blue-800 hover:shadow-xl text-center text-white"}>
+                                                        className={"shadow-lg rounded-lg p-5 bg-blue-500 text-center text-white"}>
                                                         {block}
                                                     </div>
                                                 )

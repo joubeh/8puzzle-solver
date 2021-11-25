@@ -120,6 +120,7 @@ function limitedDepthFirstSearch(startingNode, limit) {
 function IDS(startingNode) {
     let depth = 1
     while (true){
+        console.log(`Checking depth ${depth}`)
         let ans = limitedDepthFirstSearch(startingNode, depth)
         if (ans === false){
             depth++

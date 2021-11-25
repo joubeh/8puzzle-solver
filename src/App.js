@@ -69,7 +69,8 @@ function App() {
                             <div
                                 onClick={e => setSetterMode(2)}
                                 className={getSetterModeButtonsClass(2)}
-                            >Random set</div>
+                            >Random set
+                            </div>
                             <div
                                 onClick={e => setSetterMode(3)}
                                 className={getSetterModeButtonsClass(3)}
