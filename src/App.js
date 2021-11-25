@@ -2,7 +2,7 @@ import Board from "./components/Board";
 import {useEffect, useState} from "react";
 import QuickSet from "./components/QuickSet";
 import RandomSet from "./components/RandomSet";
-import LoadingScreen from "./components/LoadingScreen";
+import Solver from "./components/Solver";
 
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
     const [solved, setSolved] = useState(true)
     const [setterMode, setSetterMode] = useState(1)
     const [isSolving, setIsSolving] = useState(false)
+    const [algorithm, setAlgorithm] = useState(null)
 
     /* Goal test */
     useEffect(() => {
@@ -84,21 +85,34 @@ function App() {
             {
                 isSolving ?
                     <div>
-                        <LoadingScreen/>
+                        <Solver blocks={blocks} algorithm={algorithm} />
                     </div>
                     :
                     (
                         solved ?
                             null
                             :
-                            <div
-                                onClick={e => {
-                                    setIsSolving(true)
-                                }}
-                                className={"grid grid-cols-3 text-2xl w-max py-3 px-10 mx-auto cursor-pointer rounded-lg transition text-center text-white bg-blue-500 hover:bg-blue-800 shadow-lg hover: shadow-2xl"}>
-                                <div></div>
-                                <div>Solve</div>
-                                <div></div>
+                            <div className={'w-max mx-auto flex'}>
+                                <div
+                                    onClick={e => {
+                                        setAlgorithm("uninformed_search")
+                                        setIsSolving(true)
+                                    }}
+                                    className={"mx-2 w-max transition hover:bg-blue-800 py-2 px-5 bg-blue-500 text-center text-white rounded-xl shadow cursor-pointer"}>
+                                    Uninformed search solve
+                                </div>
+                                <div
+                                    onClick={e => {
+                                    }}
+                                    className={"mx-2 w-max transition hover:bg-blue-800 py-2 px-5 bg-blue-500 text-center text-white rounded-xl shadow cursor-pointer"}>
+                                    Informed search solve
+                                </div>
+                                <div
+                                    onClick={e => {
+                                    }}
+                                    className={"mx-2 w-max transition hover:bg-blue-800 py-2 px-5 bg-blue-500 text-center text-white rounded-xl shadow cursor-pointer"}>
+                                    Local search solve
+                                </div>
                             </div>
                     )
             }

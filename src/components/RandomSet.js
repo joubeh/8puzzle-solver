@@ -9,7 +9,7 @@ const RandomSet = ({ blocks, setBlocks, moveAbles, setMoveAbles, setSetterMode }
         ])
         setMoveAbles([1, 3])
 
-        let changeCount = Math.floor(Math.random() * 5) + 3 //todo : use it as d
+        let changeCount = Math.floor(Math.random() * 5) + 3 // todo : limit
         let componentBlocks = JSON.parse(JSON.stringify(blocks))
         let componentMoveAbles = JSON.parse(JSON.stringify(moveAbles))
         let prev = null;
