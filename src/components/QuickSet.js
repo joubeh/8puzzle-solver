@@ -13,13 +13,20 @@ const QuickSet = ({ setBlocks, setMoveAbles, setSetterMode }) => {
     ])
 
     const fixBlock = (number) => {
+        if(tmpBlocks[selectedBlock[0]][selectedBlock[1]] === -1){
+            let newAvailableNumbers = JSON.parse(JSON.stringify(availableNumbers))
+            newAvailableNumbers.splice(newAvailableNumbers.indexOf(number), 1)
+            setAvailableNumbers(newAvailableNumbers)
+        } else {
+            let rowToFree = tmpBlocks[selectedBlock[0]][selectedBlock[1]]
+            let newAvailableNumbers = JSON.parse(JSON.stringify(availableNumbers))
+            newAvailableNumbers.splice(newAvailableNumbers.indexOf(number), 1)
+            newAvailableNumbers.push(rowToFree)
+            setAvailableNumbers(newAvailableNumbers)
+        }
         let newTmpBlocks = JSON.parse(JSON.stringify(tmpBlocks))
         newTmpBlocks[selectedBlock[0]][selectedBlock[1]] = number
         setTmpBlocks(newTmpBlocks)
-
-        let newAvailableNumbers = JSON.parse(JSON.stringify(availableNumbers))
-        newAvailableNumbers.splice(newAvailableNumbers.indexOf(number), 1)
-        setAvailableNumbers(newAvailableNumbers)
 
         setIsChoosing(false)
     }
