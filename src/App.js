@@ -93,26 +93,32 @@ function App() {
                         solved ?
                             null
                             :
-                            <div className={'w-max mx-auto flex'}>
-                                <div
-                                    onClick={e => {
-                                        setAlgorithm("uninformed_search")
-                                        setIsSolving(true)
-                                    }}
-                                    className={"mx-2 w-max transition hover:bg-blue-800 py-2 px-5 bg-blue-500 text-center text-white rounded-xl shadow cursor-pointer"}>
-                                    Uninformed search solve
+                            <div>
+                                <div className={'w-max mx-auto flex'}>
+                                    <div
+                                        onClick={e => {
+                                            setAlgorithm("uninformed_search")
+                                            setIsSolving(true)
+                                        }}
+                                        className={"mx-2 w-max transition hover:bg-blue-800 py-2 px-5 bg-blue-500 text-center text-white rounded-xl shadow cursor-pointer"}>
+                                        Uninformed search solve
+                                    </div>
+                                    <div
+                                        onClick={e => {
+                                        }}
+                                        className={"mx-2 w-max transition hover:bg-blue-800 py-2 px-5 bg-blue-500 text-center text-white rounded-xl shadow cursor-pointer"}>
+                                        Informed search solve
+                                    </div>
+                                    <div
+                                        onClick={e => {
+                                        }}
+                                        className={"mx-2 w-max transition hover:bg-blue-800 py-2 px-5 bg-blue-500 text-center text-white rounded-xl shadow cursor-pointer"}>
+                                        Local search solve
+                                    </div>
                                 </div>
-                                <div
-                                    onClick={e => {
-                                    }}
-                                    className={"mx-2 w-max transition hover:bg-blue-800 py-2 px-5 bg-blue-500 text-center text-white rounded-xl shadow cursor-pointer"}>
-                                    Informed search solve
-                                </div>
-                                <div
-                                    onClick={e => {
-                                    }}
-                                    className={"mx-2 w-max transition hover:bg-blue-800 py-2 px-5 bg-blue-500 text-center text-white rounded-xl shadow cursor-pointer"}>
-                                    Local search solve
+                                <div className={"text-center text-gray-700 mt-5"}>
+                                    <div>You can watch the process flow by simply open your browser developer console <span className={"font-bold"}>"BEFORE STARTING THE SOLVER"</span></div>
+                                    <div>For Google chrome hold "Option + ⌘ + J" (on macOS), or "Shift + CTRL + J" (on Windows/Linux).</div>
                                 </div>
                             </div>
                     )
