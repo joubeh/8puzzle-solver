@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import LoadingScreen from "./LoadingScreen";
 import IDS from '../algorithms/IDS'
 import AStarRunner from '../algorithms/AStar'
-import IDAStar from '../algorithms/IDAStar'
 import Result from "./Result";
 
 const Solver = ({ blocks, algorithm }) => {
@@ -38,16 +37,7 @@ const Solver = ({ blocks, algorithm }) => {
                 setResult(res)
             }
             else {
-                let res = IDAStar({
-                    state: blocks,
-                    depth: 1
-                })
-
-                let endDate = new Date();
-                let timeTaken = endDate.getTime() - startDate.getTime();
-                setExecTime(timeTaken)
-
-                setResult(res)
+                // TODO: Implement
             }
         }, 1000);
         return () => clearTimeout(timer);
