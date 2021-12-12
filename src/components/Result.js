@@ -1,6 +1,6 @@
 import {AiOutlineArrowDown} from "react-icons/ai";
 
-const UninformedResult = ({result}) => {
+const Result = ({result}) => {
     return(
         <div>
             <div className={"w-max mx-auto mt-5 text-5xl text-gray-700"}>
@@ -87,4 +87,4 @@ const UninformedResult = ({result}) => {
     );
 }
 
-export default UninformedResult
+export default Result

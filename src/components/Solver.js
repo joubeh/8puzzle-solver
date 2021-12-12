@@ -1,15 +1,23 @@
 import {useEffect, useState} from "react";
 import LoadingScreen from "./LoadingScreen";
 import IDS from '../algorithms/IDS'
-import UninformedResult from "./UninformedResult";
+import AStarRunner from '../algorithms/AStar'
+import Result from "./Result";
 
 const Solver = ({ blocks, algorithm }) => {
     const [result, setResult] = useState(false)
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if (algorithm === "uninformed_search") {
+            if (algorithm === "IDS") {
                 let res = IDS({
+                    state: blocks,
+                    depth: 1
+                })
+                setResult(res)
+            }
+            else if (algorithm === "AStar") {
+                let res = AStarRunner({
                     state: blocks,
                     depth: 1
                 })
@@ -19,15 +27,6 @@ const Solver = ({ blocks, algorithm }) => {
         return () => clearTimeout(timer);
     }, [algorithm, blocks]);
 
-    const showResult = () => {
-        switch (algorithm) {
-            case "uninformed_search":
-                return <UninformedResult result={result} />
-            default:
-                return null
-        }
-    }
-
     return(
         <div>
             {
@@ -36,7 +35,7 @@ const Solver = ({ blocks, algorithm }) => {
                         <LoadingScreen/>
                     </div>
                     :
-                    showResult()
+                    <Result result={result}/>
             }
         </div>
     )
