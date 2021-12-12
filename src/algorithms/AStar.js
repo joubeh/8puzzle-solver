@@ -33,6 +33,10 @@ const manhattanDistance = (board) => {
     return distance
 }
 
+function getNodeFValue(board, depth) {
+    return (manhattanDistance(board) + depth - 1)
+}
+
 function getNumberPosition(state, number) {
     if (state[0].includes(number)){
         return [0, state[0].indexOf(number)]
@@ -118,15 +122,16 @@ function nodeGenerator(node, number) {
     return {
         state: newState,
         depth: node.depth + 1,
-        totalManhattan: manhattanDistance(newState)
+        parent: node,
+        f: getNodeFValue(newState, node.depth + 1)
     }
 }
 
 function getBestNodeInStack(stack) {
     let selectedNodeIndex = 0
-    let bestScore = (stack[0].depth - 1) + stack[0].totalManhattan
+    let bestScore = stack[0].f
     for (let i=0; i<stack.length; i++){
-        let currentScore = (stack[i].depth - 1) + stack[i].totalManhattan
+        let currentScore = stack[i].f
         if (currentScore < bestScore) {
             bestScore = currentScore
             selectedNodeIndex = i
@@ -135,34 +140,20 @@ function getBestNodeInStack(stack) {
     return {nodeReturned:stack[selectedNodeIndex], indexReturned: selectedNodeIndex}
 }
 
-const AStar = (startingNode) => {
+function AStar(startingNode) {
     let stack = []
-    let answer = []
-    if (goalTest(startingNode.state)) {
-        return answer
-    }
-    availableMoves(startingNode.state).forEach(move => {
-        stack.push(nodeGenerator(startingNode, move))
-    })
-    let lastState = startingNode.state
-    while (stack.length !== 0){
+    startingNode.f = getNodeFValue(startingNode.state, startingNode.depth)
+    stack.push(startingNode)
+    while (stack.length !== 0) {
         let {nodeReturned, indexReturned} = getBestNodeInStack(stack)
         let currentNode = nodeReturned
-        if (answer.length > 0)  {
-            while (answer.length > 0 && answer[answer.length - 1].depth >= currentNode.depth) {
-                answer.pop()
-            }
-        }
-        answer.push(currentNode)
         if (goalTest(currentNode.state)) {
-            return answer
+            return currentNode
         }
         stack.splice(indexReturned, 1)
         availableMoves(currentNode.state).forEach(move => {
             let nextNode = nodeGenerator(currentNode, move)
-            if (JSON.stringify(nextNode.state) === JSON.stringify(lastState)) {} else {
-                stack.push(nextNode)
-            }
+            stack.push(nextNode)
         })
     }
     return false
@@ -170,25 +161,21 @@ const AStar = (startingNode) => {
 
 function AStarRunner(startingNode) {
     let ans = AStar(startingNode)
-    if (ans === false){
-        return false
+
+    if (!ans) {
+        alert("Something went wrong!")
     } else {
-        let foundOn = ans[ans.length - 1].depth
-        let steps = [ans[ans.length - 1].state]
-        let lastDepths = [ans[ans.length - 1].depth]
-        for (let i=(ans.length - 1); i>=0; i--){
-            if(!lastDepths.includes(ans[i].depth)) {
-                steps.push(ans[i].state)
-                lastDepths.push(ans[i].depth)
-            }
+        let answer = []
+        let cNode = ans
+        while (cNode !== null){
+            answer.push(cNode.state)
+            cNode = cNode.parent
         }
-        steps.push(startingNode.state)
         return {
-            foundOnDepth: foundOn,
-            steps: steps.reverse()
+            foundOnDepth: ans.depth,
+            steps: answer.reverse()
         }
     }
 }
-
 
 export default AStarRunner

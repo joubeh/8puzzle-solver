@@ -27,7 +27,9 @@ const Solver = ({ blocks, algorithm }) => {
             else if (algorithm === "AStar") {
                 let res = AStarRunner({
                     state: blocks,
-                    depth: 1
+                    parent: null,
+                    depth: 1,
+                    f: null
                 })
 
                 let endDate = new Date();
