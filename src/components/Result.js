@@ -1,13 +1,21 @@
 import {AiOutlineArrowDown} from "react-icons/ai";
 
-const Result = ({result}) => {
+const Result = ({ result, execTime, algorithm }) => {
     return(
         <div>
             <div className={"w-max mx-auto mt-5 text-5xl text-gray-700"}>
                 Solved!
             </div>
-            <div className={"w-max mx-auto text-3xl text-gray-700 my-5"}>
-                Cost : {result.foundOnDepth - 1}
+            <div className={"w-max mx-auto text-2xl text-gray-700 my-5 text-center"}>
+                <div>
+                    Cost : {result.foundOnDepth - 1}
+                </div>
+                <div>
+                    Execution time : {execTime} milliseconds
+                </div>
+                <div>
+                    Solver algorithm : {algorithm}
+                </div>
             </div>
             <div className={"w-max mx-auto"}>
                 {

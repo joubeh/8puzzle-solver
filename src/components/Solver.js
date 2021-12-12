@@ -6,14 +6,22 @@ import Result from "./Result";
 
 const Solver = ({ blocks, algorithm }) => {
     const [result, setResult] = useState(false)
+    const [execTime, setExecTime] = useState(0)
 
     useEffect(() => {
         const timer = setTimeout(() => {
+            let startDate = new Date();
+
             if (algorithm === "IDS") {
                 let res = IDS({
                     state: blocks,
                     depth: 1
                 })
+
+                let endDate = new Date();
+                let timeTaken = endDate.getTime() - startDate.getTime();
+                setExecTime(timeTaken)
+
                 setResult(res)
             }
             else if (algorithm === "AStar") {
@@ -21,6 +29,11 @@ const Solver = ({ blocks, algorithm }) => {
                     state: blocks,
                     depth: 1
                 })
+
+                let endDate = new Date();
+                let timeTaken = endDate.getTime() - startDate.getTime();
+                setExecTime(timeTaken)
+
                 setResult(res)
             }
         }, 1000);
@@ -35,7 +48,7 @@ const Solver = ({ blocks, algorithm }) => {
                         <LoadingScreen/>
                     </div>
                     :
-                    <Result result={result}/>
+                    <Result result={result} execTime={execTime} algorithm={algorithm}/>
             }
         </div>
     )
