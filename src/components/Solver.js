@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import LoadingScreen from "./LoadingScreen";
 import IDS from '../algorithms/IDS'
 import AStarRunner from '../algorithms/AStar'
+import GreedyBFS from '../algorithms/GreedyBFS'
 import Result from "./Result";
 
 const Solver = ({ blocks, algorithm }) => {
@@ -39,7 +40,18 @@ const Solver = ({ blocks, algorithm }) => {
                 setResult(res)
             }
             else {
-                // TODO: Implement
+                let res = GreedyBFS({
+                    state: blocks,
+                    parent: null,
+                    depth: 1,
+                    f: null
+                })
+
+                let endDate = new Date();
+                let timeTaken = endDate.getTime() - startDate.getTime();
+                setExecTime(timeTaken)
+
+                setResult(res)
             }
         }, 1000);
         return () => clearTimeout(timer);
