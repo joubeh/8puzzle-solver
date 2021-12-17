@@ -3,7 +3,7 @@ This app solves 8 puzzle with this algorithms
 
  - IDS ( Iterative deepening depth-first search )
  - A* ( A Star )
- - GreedyBFS ( Greesy best first search )
+ - GreedyBFS ( Greedy best first search )
  ---
  ### Demo [here](https://8puzzle-joubeh.netlify.app/)
  ---
