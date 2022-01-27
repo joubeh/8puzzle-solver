@@ -5,7 +5,7 @@ This app solves 8 puzzle with this algorithms
  - A* ( A Star )
  - GreedyBFS ( Greedy best first search )
  ---
- ### Demo [here](https://github.com/jobeh/8puzzle-solver/)
+ ### Demo [here](https://jobeh.github.io/8puzzle-solver/)
  ---
  ## Run the app localy
  
