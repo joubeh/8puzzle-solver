@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/8puzzle-solver/static/css/main.1ab6aacc.chunk.css",
+    "main.js": "/8puzzle-solver/static/js/main.8f3a1666.chunk.js",
+    "main.js.map": "/8puzzle-solver/static/js/main.8f3a1666.chunk.js.map",
+    "runtime-main.js": "/8puzzle-solver/static/js/runtime-main.5c835d30.js",
+    "runtime-main.js.map": "/8puzzle-solver/static/js/runtime-main.5c835d30.js.map",
+    "static/js/2.8d65f990.chunk.js": "/8puzzle-solver/static/js/2.8d65f990.chunk.js",
+    "static/js/2.8d65f990.chunk.js.map": "/8puzzle-solver/static/js/2.8d65f990.chunk.js.map",
+    "static/js/3.e26e86da.chunk.js": "/8puzzle-solver/static/js/3.e26e86da.chunk.js",
+    "static/js/3.e26e86da.chunk.js.map": "/8puzzle-solver/static/js/3.e26e86da.chunk.js.map",
+    "index.html": "/8puzzle-solver/index.html",
+    "static/css/main.1ab6aacc.chunk.css.map": "/8puzzle-solver/static/css/main.1ab6aacc.chunk.css.map",
+    "static/js/2.8d65f990.chunk.js.LICENSE.txt": "/8puzzle-solver/static/js/2.8d65f990.chunk.js.LICENSE.txt",
+    "static/media/loading-gif.3bd80a05.gif": "/8puzzle-solver/static/media/loading-gif.3bd80a05.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5c835d30.js",
+    "static/js/2.8d65f990.chunk.js",
+    "static/css/main.1ab6aacc.chunk.css",
+    "static/js/main.8f3a1666.chunk.js"
+  ]
+}
